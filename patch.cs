@@ -11,7 +11,7 @@ namespace tesplugin
     {
         #region Variables
         static Player play;
-        static Inventory Inv;
+        public static Inventory Inv;
         static Scene sce;
         static Storage sto;
         static UIInventory uiiinv;
@@ -28,7 +28,7 @@ namespace tesplugin
             static void Postfix(Player __instance)
             {
                 play = __instance;
-                Debug.Log("player update " + play.name);
+               // Debug.Log("player update " + play.name);
               
             }
         }
@@ -40,7 +40,7 @@ namespace tesplugin
             {
                 Inv = __instance;
                 sto = Inv.storage;
-                Debug.Log("invetory refresh " + Inv.storage.items.items.Count.ToString());
+                //Debug.Log("invetory refresh " + Inv.storage.items.items.Count.ToString());
             }
         }
 
@@ -50,7 +50,7 @@ namespace tesplugin
             static void Postfix(Scene __instance)
             {
                 sce = __instance;
-                Debug.Log("Scene started ");
+                //Debug.Log("Scene started ");
                 //GameObject unityyplay =  GameObject.Find("Player");
                 // print(unityyplay.name);
 
@@ -63,7 +63,7 @@ namespace tesplugin
             static void Postfix(InventorySlot __instance)
             {
                 invslot = __instance;
-                Debug.Log("Inv clicked " + Global.code.crystals.ToString());
+                //Debug.Log("Inv clicked " + Global.code.crystals.ToString());
                 
             }
         }
@@ -74,7 +74,7 @@ namespace tesplugin
             static void Postfix(Global __instance)
             {
                 glob = __instance;
-                Debug.Log("Global setup ");
+                //Debug.Log("Global setup ");
             }
         }
 
@@ -84,7 +84,7 @@ namespace tesplugin
             static void Postfix(UIMenu __instance)
             {
                 umen = __instance;
-                Debug.Log("Menu setup");
+                //Debug.Log("Menu setup");
             }
         }
 
@@ -94,7 +94,7 @@ namespace tesplugin
             static void Postfix(UIInventory __instance)
             {
                 uiiinv = __instance;
-                Debug.Log("uiinvetory setup");
+                //Debug.Log("uiinvetory setup");
             }
         }
 
@@ -104,8 +104,7 @@ namespace tesplugin
             static void Postfix(Mainframe __instance)
             {
                 mf = __instance;
-
-                Debug.Log("Mainfram setup");
+                //Debug.Log("Mainfram setup");
             }
         }
         #endregion
