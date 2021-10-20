@@ -44,7 +44,12 @@ namespace tesplugin
 
         public void WindowFunction(int windowID)
         {
-
+                Player play = null;
+                CharacterCustomization playcust = null;
+                ID playid = null;
+                CharacterCustomization custom = null;
+                Companion comp = null;
+                ID ids = null;
             
             if (GUILayout.Button("Stack Inventory"))
             {
@@ -97,11 +102,84 @@ namespace tesplugin
             {
                 Global.code.AddGold(9000);
             }
-          
+            if (GUILayout.Button("Resurect All"))
+            {
+                
+                for (int i = 0; i < Scene.code.transform.childCount; i++)
+                {
+                    Transform it = Scene.code.transform.GetChild(i);
+                    if (it.name == "Companion Base")
+                    {
+                        custom = it.GetComponent<CharacterCustomization>();
+                        comp = it.GetComponent<Companion>();
+                        ids = it.GetComponent<ID>();
+                        if(ids.health ==0)
+                        {
+                        ids.health = custom._ID.maxHealth;
+                        ids.mana = custom._ID.maxMana;
+                        custom.anim.enabled = true;
+                        custom.GetComponent<Rigidbody>().isKinematic = false;
+                        if (custom.GetComponent<Collider>())
+                        {
+                            custom.GetComponent<Collider>().enabled = true;
+                        }
+                        foreach (Transform transform in custom.bones)
+                        {
+                            if (transform)
+                            {
+                                transform.GetComponent<Rigidbody>().isKinematic = true;
+                                transform.GetComponent<Rigidbody>().useGravity = false;
+                                transform.GetComponent<Collider>().enabled = false;
+                            }
+                        }
+
+                        if (custom.GetComponent<MapIcon>())
+                        {
+                            DestroyImmediate(custom.gameObject.GetComponent<MapIcon>());
+                        }
+                        custom.gameObject.AddComponent<MapIcon>();
+                        custom.GetComponent<MapIcon>().healthBarColor = Color.green;
+                        custom.GetComponent<MapIcon>().id = custom.GetComponent<ID>();
+                        custom.GetComponent<MapIcon>().posBias = new Vector3(0f, 2.3f, 0f);
+                        custom.GetComponent<MapIcon>().visibleRange = 300f;
+                        }
+                       
+                        //
+
+                    }
+                    if (it.name == "Player")
+                    {
+                        play = it.GetComponent<Player>();
+                        playcust = it.GetComponent<CharacterCustomization>();
+                        playid = it.GetComponent<ID>();
+                        if (playid.health <= 5)
+                        {
+                            playid.health = playcust._ID.maxHealth;
+                            playid.mana = playcust._ID.maxMana;
+                            //
+                        }
+                    }
+                }
+            }
+            if (GUILayout.Button("Heal Party"))
+            {
+                Global.code.AddGold(9000);
+            }
+            if (GUILayout.Button("Test floating text"))
+            {
+              
+                DoFloatingText();
+            }
+
             Event e = Event.current;
 
             GUI.DragWindow();
         }
-
+        public static void DoFloatingText()
+        {
+            floatingtext fl = Scene.code.gameObject.AddComponent(typeof(floatingtext)) as floatingtext;
+            fl.enabled = true;
+            fl.setup();
+        }
     }
 }

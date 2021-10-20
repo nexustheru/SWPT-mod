@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -66,6 +67,10 @@
       <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
@@ -76,20 +81,40 @@
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
       <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>E:\SteamLibrary\steamapps\common\She Will Punish Them\She Will Punish Them_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Beepinex.cs" />
+    <Compile Include="floatingtext.cs" />
     <Compile Include="MainUi.cs" />
     <Compile Include="patch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
