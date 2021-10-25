@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+
+
 //mainframe.code
 //global
 //scene
@@ -20,6 +23,7 @@ namespace tesplugin
         GameObject myglob = new GameObject();
         GameObject unityyplay = new GameObject();
         GameObject stoo = new GameObject();
+        private string pdir = Directory.GetCurrentDirectory().Replace("\\", "//");
         public void FetchPatches()
         {
             paatch = new patch();
@@ -50,6 +54,7 @@ namespace tesplugin
                 CharacterCustomization custom = null;
                 Companion comp = null;
                 ID ids = null;
+
             
             if (GUILayout.Button("Stack Inventory"))
             {
@@ -170,11 +175,53 @@ namespace tesplugin
               
                 DoFloatingText();
             }
+            if (GUILayout.Button("Test Load asset 3d"))
+            {
+                var tester=ModelImporter.Importer.Import(pdir+ "/BepInEx/plugins/Meshes/ball.fbx");//6,3417 2,82 73,3733
 
+                tester.AddComponent(typeof(SphereCollider));
+                tester.AddComponent(typeof(MapIcon));
+                tester.AddComponent(typeof(Interaction));
+                var temp=tester.GetComponent(typeof(MeshRenderer)) as MeshRenderer;
+                var tempfilter = tester.GetComponent(typeof(MeshFilter)) as MeshFilter;
+                tempfilter.mesh.RecalculateBounds();
+                tempfilter.mesh.RecalculateNormals();
+                var tempcollide = tester.GetComponent(typeof(SphereCollider)) as SphereCollider;
+
+                Texture2D tex = new Texture2D(2, 2);
+                var bytes = File.ReadAllBytes(pdir + "/BepInEx/plugins/Textures/ww.png");
+                tex.LoadRawTextureData(bytes);
+                tex.name = "ww";
+                tex.Apply();
+                temp.material.SetTexture("_BaseMap", tex);
+                temp.material.SetTexture("_BaseColorMap",tex);
+                temp.material.mainTexture=tex;
+
+                tester.transform.position= GameObject.Find("Bartender").transform.position;
+                tester.transform.localScale = new Vector3(3, 3, 3);
+                tester.SetActive(true);
+               
+
+                print("tester inporterd?");
+
+            }
+            if (GUILayout.Button("custom 3d test"))
+            {
+                GameObject gol = new GameObject();
+                Meshimport mi = gol.AddComponent<Meshimport>();
+              
+                print("custom Import?");
+            }
+            if (GUILayout.Button("triangle test"))
+            {
+                GameObject gol1=new GameObject();
+                CreateTriangleScript script = gol1.AddComponent<CreateTriangleScript>();
+            }
             Event e = Event.current;
 
             GUI.DragWindow();
         }
+      
         public static void DoFloatingText()
         {
             floatingtext fl = Scene.code.gameObject.AddComponent(typeof(floatingtext)) as floatingtext;
