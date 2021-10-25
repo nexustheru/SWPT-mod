@@ -177,32 +177,9 @@ namespace tesplugin
             }
             if (GUILayout.Button("Test Load asset 3d"))
             {
-                var tester=ModelImporter.Importer.Import(pdir+ "/BepInEx/plugins/Meshes/ball.fbx");//6,3417 2,82 73,3733
-
-                tester.AddComponent(typeof(SphereCollider));
-                tester.AddComponent(typeof(MapIcon));
-                tester.AddComponent(typeof(Interaction));
-                var temp=tester.GetComponent(typeof(MeshRenderer)) as MeshRenderer;
-                var tempfilter = tester.GetComponent(typeof(MeshFilter)) as MeshFilter;
-                tempfilter.mesh.RecalculateBounds();
-                tempfilter.mesh.RecalculateNormals();
-                var tempcollide = tester.GetComponent(typeof(SphereCollider)) as SphereCollider;
-
-                Texture2D tex = new Texture2D(2, 2);
-                var bytes = File.ReadAllBytes(pdir + "/BepInEx/plugins/Textures/ww.png");
-                tex.LoadRawTextureData(bytes);
-                tex.name = "ww";
-                tex.Apply();
-                temp.material.SetTexture("_BaseMap", tex);
-                temp.material.SetTexture("_BaseColorMap",tex);
-                temp.material.mainTexture=tex;
-
-                tester.transform.position= GameObject.Find("Bartender").transform.position;
-                tester.transform.localScale = new Vector3(3, 3, 3);
-                tester.SetActive(true);
-               
-
-                print("tester inporterd?");
+                GameObject gol11 = new GameObject();
+                loadasset script = gol11.AddComponent<loadasset>();
+                print("asset inported test");
 
             }
             if (GUILayout.Button("custom 3d test"))
