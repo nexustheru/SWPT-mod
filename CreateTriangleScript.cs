@@ -102,5 +102,6 @@ public class CreateTriangleScript : MonoBehaviour
 
         //Assign mesh to filter
         GetComponent<MeshFilter>().mesh = newMesh;
+        transform.position = new Vector3(6.3417f, 4.82f, 73.3733f);
     }
 }

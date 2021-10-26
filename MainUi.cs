@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,14 +20,17 @@ namespace tesplugin
         private Rect UI = new Rect(20, 20, 400, 400);
         private static Vector2 scrollPosition = Vector2.zero;
         private GUIStyle logTextStyle = new GUIStyle();
-        private tesplugin.patch paatch;
+        private string assetPath = "E://SteamLibrary//steamapps//common//She Will Punish Them//BepInEx//plugins//Textures//test.png";
+        private string assetPath1 = "E://SteamLibrary//steamapps//common//She Will Punish Them//She Will Punish Them_Data//test.png";
+        private string assetPath2 = "E://SteamLibrary//steamapps//common//She Will Punish Them//She Will Punish Them_Data//Resources//test.png";
+        //private tesplugin.patch paatch;
         GameObject myglob = new GameObject();
         GameObject unityyplay = new GameObject();
         GameObject stoo = new GameObject();
         private string pdir = Directory.GetCurrentDirectory().Replace("\\", "//");
         public void FetchPatches()
         {
-            paatch = new patch();
+            //paatch = new patch();
             print("patches completed");
             setupvariables();
         }
@@ -192,18 +196,62 @@ namespace tesplugin
             if (GUILayout.Button("triangle test"))
             {
                 GameObject gol1=new GameObject();
-                CreateTriangleScript script = gol1.AddComponent<CreateTriangleScript>();
+                CreateTriangleScript scrip1t = gol1.AddComponent<CreateTriangleScript>();
             }
-            Event e = Event.current;
+            if (GUILayout.Button("custom tex test"))
+            {
+                GameObject gol2 = new GameObject();
+                customTex script2 = gol2.AddComponent<customTex>();
+            }
+            if (GUILayout.Button("custom tex test1"))
+            {
+                test0();
+            }
 
+            Event e = Event.current;
+            
             GUI.DragWindow();
         }
-      
-        public static void DoFloatingText()
+
+
+        //[HarmonyPatch(typeof(RM), "LoadResources")]
+        //static class LoadResources_Patch
+        //{           
+        //    static void Postfix(RM __instance)
+        //    {
+        //        GameObject gol = new GameObject();
+        //        Meshimport mi = gol.AddComponent<Meshimport>();
+        //        __instance.allItems.AddItem(mi.transform);
+        //        DontDestroyOnLoad(gol);
+        //    }
+        //}
+      public static void DoFloatingText()
         {
             floatingtext fl = Scene.code.gameObject.AddComponent(typeof(floatingtext)) as floatingtext;
             fl.enabled = true;
             fl.setup();
+        }
+
+        public void test0()
+        {
+            Debug.Log("custom scene management");
+            Texture2D tex = (Texture2D)Resources.Load(assetPath2, typeof(Texture2D));
+            tex.name = "linlooo";
+            tex.Apply();
+
+            var allGOs = FindObjectsOfType<GameObject>();
+            foreach (GameObject go in allGOs)
+            {
+                var mr = go.GetComponent<MeshRenderer>();
+                if (mr)
+                {
+                   Material[] materialss = mr.materials;
+                   materialss[0].mainTexture = tex;
+                    // mr.material.mainTexture = tex;
+                }
+            }
+            Debug.Log("custom scene management done");
+
         }
     }
 }
