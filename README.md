@@ -5,5 +5,7 @@ https://github.com/BepInEx/BepInEx
 https://imgur.com/a/M96hY8H
 
 also updated the official mod tools
+https://github.com/nexustheru/SWPT-Modtools-updated
+or
 https://www.nexusmods.com/shewillpunishthem/mods/111
 now using Unity 2020.3.14f1 and Vs 2019
